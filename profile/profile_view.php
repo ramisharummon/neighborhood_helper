@@ -110,6 +110,9 @@ if(isset($_POST['update_image'])){
 
         <!-- Profile Picture -->
         <div class="text-center mb-6">
+            <div class="w-full text-right">
+                <a class="text-3xl font-bold text-[#9D81B3] mb-3" href="https://google.com">?</a>
+            </div>
             <form action="profile_view.php" method="POST" enctype="multipart/form-data">
                 <img src="<?php echo $profile_picture ? '../assets/uploads/user-images/' . $profile_picture : 'https://i.pravatar.cc/300'; ?>"
                     alt="Profile Picture" id="profile-picture"
@@ -128,9 +131,12 @@ if(isset($_POST['update_image'])){
                     </svg>
                 </label>
                 <button
-                    class="bg-[#9D81B3] text-white px-4 py-2 mt-2 rounded-lg hover:bg-[#7C6790] active:bg-[#624E73] transition-colors duration-300 ring ring-gray-300 hover:ring-[#7C6790]" type="submit" id="profile-image-submit-button" disabled>
+                    class="bg-[#9D81B3] text-white px-4 py-2 mt-2 rounded-lg hover:bg-[#7C6790] active:bg-[#624E73] transition-colors duration-300 ring ring-gray-300 hover:ring-[#7C6790]"
+                    type="submit" id="profile-image-submit-button" disabled>
                     Change Profile Picture
                 </button>
+                
+
             </form>
         </div>
 
