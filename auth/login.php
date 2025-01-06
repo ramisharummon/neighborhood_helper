@@ -57,14 +57,11 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
     }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer=""></script>
+    <script src="../assets/js/profile.js" defer=""></script>
 
 </head>
 
 <body translate="no" class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-
-
-
-
 
 
     <div class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
@@ -93,13 +90,35 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
                                 Failed
                             </p>
                             <p class="ml-4 p-3">
-                                Something went wrong. Please try again. Error: Incorrect email or password.
+                                Something went wrong. Please try again. Error: <?php echo $_SESSION['error']; ?>
                             </p>
 
                         </div>
 
                         <?php } ?>
                         <?php unset($_SESSION['error']); ?>
+
+                        <?php if (isset($_SESSION['success'])) { ?>
+
+                        <div role="alert mb-2"
+                            class="mt-3 relative flex flex-col w-full p-3 text-sm text-white bg-green-500 rounded-md">
+                            <p class="flex text-base">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="h-5 w-5 mr-2 mt-0.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z">
+                                    </path>
+                                </svg>
+                                Failed
+                            </p>
+                            <p class="ml-4 p-3">
+                                <?php echo $_SESSION['success']; ?>
+                            </p>
+
+                        </div>
+
+                        <?php } ?>
+                        <?php unset($_SESSION['success']); ?>
 
                         <form action="login.php" method="POST" class="mt-2">
                             <input
@@ -126,6 +145,12 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
                                 </span>
                             </button>
                         </form>
+                        <p class="mt-6 text-xs text-gray-600 text-center">
+                            Not a member yet?
+                            <a href="registration.php" class="border-b border-gray-500 border-dotted">
+                                Registration Now
+                            </a>
+                        </p>
 
                     </div>
                 </div>
