@@ -125,16 +125,19 @@ session_start();
 <body>
     <!-- Navbar -->
     <div class="navbar">
-        <div class="logo">Neighborhood Helper</div>
+    <div class="logo">Neighborhood Helper</div>
         <a href="home.php">Home</a>
         <a href="help_portal.php">View Help</a>
-       
+        <?php if(isset($_SESSION['user_id'])){ ?>
         <a href="logout.php">Logout</a>
+        <?php } ?>
         <div class="search-bar">
             <input type="text" placeholder="Search">
             <button>Search</button>
         </div>
+        <?php if(!isset($_SESSION['user_id'])){ ?>
         <a href="login.php" class="login">Login</a>
+        <?php } ?>
     </div>
 
     <!-- Lottie Animation -->
@@ -162,8 +165,12 @@ session_start();
             });
         </script>
         <div class="register-text">
-            <p>Didn't sign up yet? <a href="registration.php" class="signup-link">Sign up here</a></p>
+            
+            <?php if(!isset($_SESSION['user_id'])){ ?>
+                <p>Didn't sign up yet? <a href="registration.php" class="signup-link">Sign up here</a></p>
+        <?php } ?>
         </div>
+        
     </div>
 </body>
-</html>
+</html> 

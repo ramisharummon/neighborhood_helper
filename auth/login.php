@@ -6,7 +6,7 @@ include('../db.php');
 
 if (isset($_SESSION['user_id'])) {
     // Redirect to profile if user is already logged in
-    header("Location: ../profile/profile_view.php");
+    header("Location: ../");
     exit();
 }
 
@@ -27,7 +27,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
         // User found, redirect to profile page
         $_SESSION['user_id'] = $user['UserID'];
         $_SESSION['user'] = json_encode($user);
-        header("Location: ../profile/profile_view.php");
+        header("Location: ../");
         exit();
         
     } else {
