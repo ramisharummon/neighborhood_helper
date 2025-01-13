@@ -127,7 +127,8 @@ session_start();
     <div class="navbar">
         <div class="logo">Neighborhood Helper</div>
         <a href="home.php">Home</a>
-        <a href="viewhelp.php">View Help</a>
+        <a href="help_portal.php">View Help</a>
+       
         <a href="logout.php">Logout</a>
         <div class="search-bar">
             <input type="text" placeholder="Search">
