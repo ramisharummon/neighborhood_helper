@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Help</title>
+    <title>Available Help</title>
     <style>
         /* Basic Reset */
         * {
@@ -126,7 +126,7 @@
 
         .form-container button {
             background-color: #6C83C2;
-            color: white;
+            color: #fff;
             font-size: 1.1em;
             padding: 12px;
             border-radius: 8px;
@@ -143,7 +143,7 @@
         /* Return Home Link */
         .return-home {
             text-align: center;
-            margin-top: 15px; /* Reduced margin to move it up */
+            margin-top: 30px;
         }
 
         .return-home a {
@@ -180,13 +180,13 @@
 
     <!-- Main Content -->
     <div class="form-container">
-        <h2>Request Help</h2>
-        <form action="submit_request.php" method="POST">
+        <h2>Available Help</h2>
+        <form action="submit_available.php" method="POST">
             <label for="title">Help Title:</label>
-            <input type="text" id="title" name="title" placeholder="E.g., Need help with groceries" required>
+            <input type="text" id="title" name="title" placeholder="E.g., Offering help with groceries" required>
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="5" placeholder="Provide details about the help you need" required></textarea>
+            <textarea id="description" name="description" rows="5" placeholder="Provide details about the help available" required></textarea>
 
             <label for="type">Type of Help:</label>
             <select id="type" name="type" required>
@@ -196,11 +196,11 @@
                 <option value="other">Other</option>
             </select>
 
-            <label for="urgency">Urgency:</label>
-            <select id="urgency" name="urgency" required>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+            <label for="availability">Availability:</label>
+            <select id="availability" name="availability" required>
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
             </select>
 
             <label for="date">Date:</label>
@@ -212,7 +212,7 @@
             <label for="location">Location:</label>
             <input type="text" id="location" name="location" placeholder="E.g., 123 Main Street" required>
 
-            <button type="submit">Post Request</button>
+            <button type="submit">Post Available Help</button>
         </form>
     </div>
 
@@ -223,3 +223,4 @@
 
 </body>
 </html>
+
