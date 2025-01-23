@@ -1,3 +1,8 @@
+<?php
+session_start();
+include('../db.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +27,6 @@
             min-height: 100vh;
         }
 
-        /* Navbar Styles */
         .navbar {
             background-color: #6C83C2;
             width: 100%;
@@ -53,29 +57,6 @@
             background-color: #4a62a4;
         }
 
-        .navbar .search-bar input {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            outline: none;
-            margin-right: 10px;
-        }
-
-        .navbar .search-bar button {
-            background-color: #fff;
-            color: #6C83C2;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar .search-bar button:hover {
-            background-color: #e3e3e3;
-        }
-
-        /* Main Form Container */
         .form-container {
             background: #fff;
             border-radius: 12px;
@@ -112,18 +93,6 @@
             transition: border 0.3s ease, background-color 0.3s ease;
         }
 
-        .form-container input:focus,
-        .form-container select:focus,
-        .form-container textarea:focus {
-            border-color: #6C83C2;
-            background-color: #fff;
-        }
-
-        .form-container textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
         .form-container button {
             background-color: #6C83C2;
             color: white;
@@ -140,10 +109,9 @@
             background-color: #4a62a4;
         }
 
-        /* Return Home Link */
         .return-home {
             text-align: center;
-            margin-top: 5px;
+            margin-top: 15px;
         }
 
         .return-home a {
@@ -157,24 +125,17 @@
         .return-home a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
-
     <!-- Navbar -->
     <div class="navbar">
         <div class="logo">Neighborhood Helper</div>
         <div>
             <a href="home.php">Home</a>
-            <a href="offer_help.php">Offer Help</a>
+            <a href="request_help.php">Request Help</a>
             <a href="available_help.php">Available Help</a>
-        </div>
-        <div class="search-bar">
-            <form method="GET" action="search.php">
-                <input type="text" name="query" placeholder="Search here...">
-                <button type="submit">Search</button>
-            </form>
+            <a href="review.php">Review</a> <!-- Added Review link -->
         </div>
     </div>
 
@@ -183,43 +144,37 @@
         <h2>Offer Help</h2>
         <form action="submit_offer.php" method="POST">
             <label for="title">Help Title:</label>
-            <input type="text" id="title" name="title" placeholder="E.g., Offering help with groceries" required>
+            <input type="text" id="title" name="title" placeholder="E.g., Can assist with groceries" required>
 
             <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="5" placeholder="Provide details about the help you're offering" required></textarea>
+            <textarea id="description" name="description" rows="5" placeholder="Provide details about the help you can offer" required></textarea>
 
-            <label for="type">Type of Help:</label>
-            <select id="type" name="type" required>
-                <option value="physical">Physical Help</option>
-                <option value="technical">Technical Help</option>
-                <option value="emotional">Emotional Support</option>
-                <option value="other">Other</option>
+            <label for="category">Category:</label>
+            <select id="category" name="category" required>
+                <option value="Home Repairs">Home Repairs</option>
+                <option value="Technical Help">Technical Help</option>
+                <option value="Personal Support">Personal Support</option>
+                <option value="Other">Other</option>
             </select>
+
+            <label for="price">Price (in $):</label>
+            <input type="number" id="price" name="price" placeholder="E.g., 15.00" step="0.01" required>
 
             <label for="availability">Availability:</label>
-            <select id="availability" name="availability" required>
-                <option value="morning">Morning</option>
-                <option value="afternoon">Afternoon</option>
-                <option value="evening">Evening</option>
+            <input type="text" id="availability" name="availability" placeholder="E.g., Weekends, 9 AM - 5 PM" required>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
             </select>
-
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time" required>
-
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder="E.g., 123 Main Street" required>
 
             <button type="submit">Post Offer</button>
         </form>
     </div>
 
-    <!-- Return Home Link -->
     <div class="return-home">
         <a href="home.php">Return to Home</a>
     </div>
-
 </body>
 </html>

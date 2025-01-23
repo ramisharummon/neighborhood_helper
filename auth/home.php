@@ -125,9 +125,11 @@ session_start();
 <body>
     <!-- Navbar -->
     <div class="navbar">
-    <div class="logo">Neighborhood Helper</div>
+        <div class="logo">Neighborhood Helper</div>
         <a href="home.php">Home</a>
         <a href="help_portal.php">View Help</a>
+        <!-- "Review" link logic -->
+        <a href="<?php echo isset($_SESSION['user_id']) ? 'review.php' : 'login.php'; ?>">Review</a>
         <?php if(isset($_SESSION['user_id'])){ ?>
         <a href="logout.php">Logout</a>
         <?php } ?>
@@ -165,12 +167,10 @@ session_start();
             });
         </script>
         <div class="register-text">
-            
             <?php if(!isset($_SESSION['user_id'])){ ?>
                 <p>Didn't sign up yet? <a href="registration.php" class="signup-link">Sign up here</a></p>
-        <?php } ?>
+            <?php } ?>
         </div>
-        
     </div>
 </body>
-</html> 
+</html>

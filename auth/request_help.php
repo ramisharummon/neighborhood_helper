@@ -1,3 +1,8 @@
+<?php
+session_start();
+include('../db.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +27,6 @@
             min-height: 100vh;
         }
 
-        /* Navbar Styles */
         .navbar {
             background-color: #6C83C2;
             width: 100%;
@@ -53,29 +57,6 @@
             background-color: #4a62a4;
         }
 
-        .navbar .search-bar input {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            outline: none;
-            margin-right: 10px;
-        }
-
-        .navbar .search-bar button {
-            background-color: #fff;
-            color: #6C83C2;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar .search-bar button:hover {
-            background-color: #e3e3e3;
-        }
-
-        /* Main Form Container */
         .form-container {
             background: #fff;
             border-radius: 12px;
@@ -112,18 +93,6 @@
             transition: border 0.3s ease, background-color 0.3s ease;
         }
 
-        .form-container input:focus,
-        .form-container select:focus,
-        .form-container textarea:focus {
-            border-color: #6C83C2;
-            background-color: #fff;
-        }
-
-        .form-container textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
         .form-container button {
             background-color: #6C83C2;
             color: white;
@@ -140,10 +109,9 @@
             background-color: #4a62a4;
         }
 
-        /* Return Home Link */
         .return-home {
             text-align: center;
-            margin-top: 15px; /* Reduced margin to move it up */
+            margin-top: 15px;
         }
 
         .return-home a {
@@ -157,11 +125,9 @@
         .return-home a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
-
     <!-- Navbar -->
     <div class="navbar">
         <div class="logo">Neighborhood Helper</div>
@@ -169,12 +135,6 @@
             <a href="home.php">Home</a>
             <a href="offer_help.php">Offer Help</a>
             <a href="available_help.php">Available Help</a>
-        </div>
-        <div class="search-bar">
-            <form method="GET" action="search.php">
-                <input type="text" name="query" placeholder="Search here...">
-                <button type="submit">Search</button>
-            </form>
         </div>
     </div>
 
@@ -216,10 +176,8 @@
         </form>
     </div>
 
-    <!-- Return Home Link -->
     <div class="return-home">
         <a href="home.php">Return to Home</a>
     </div>
-
 </body>
 </html>
