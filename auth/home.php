@@ -130,7 +130,10 @@ session_start();
         <a href="help_portal.php">View Help</a>
         <!-- "Review" link logic -->
         <a href="<?php echo isset($_SESSION['user_id']) ? 'review.php' : 'login.php'; ?>">Review</a>
-        <?php if(isset($_SESSION['user_id'])){ ?>
+       
+            <a href="<?php echo isset($_SESSION['user_id']) ? 'group.php' : 'login.php'; ?>">Group</a>
+            <?php if(isset($_SESSION['user_id'])){ ?>
+
         <a href="logout.php">Logout</a>
         <?php } ?>
         <div class="search-bar">

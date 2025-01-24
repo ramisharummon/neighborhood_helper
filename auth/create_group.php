@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('db.php');
+//session_start();
+include('../db.php');
 
 // Ensure only logged-in users can access this page
 if (!isset($_SESSION['user_id'])) {
