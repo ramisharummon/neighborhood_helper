@@ -21,11 +21,39 @@ try {
     <title>Available Help</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f7fa;
             margin: 0;
             padding: 0;
             color: #333;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: #7297cf;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #5a78a4;
         }
 
         h1 {
@@ -107,6 +135,22 @@ try {
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Neighborhood Helper</div>
+        <a href="home.php">Home</a>
+        <a href="help_portal.php">View Help</a>
+        <a href="available_help.php">Available Help</a>
+        <a href="review.php">Review</a>
+        <a href="group.php">Group</a>
+        <a href="createevents.php">Event</a>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="logout.php">Logout</a>
+        <?php else: ?>
+            <a href="login.php">Login</a>
+        <?php endif; ?>
+    </div>
+
     <h1>Available Help Offers</h1>
 
     <div class="offer-container">
@@ -123,7 +167,6 @@ try {
                     
                     <!-- Accept Help Button -->
                     <form method="POST" action="accept_offer.php">
-                        <!-- Hidden input to pass the offer_id to accept_offer.php -->
                         <input type="hidden" name="offer_id" value="<?php echo htmlspecialchars($offer['ID']); ?>">
                         <button type="submit" name="accept_offer" class="accept-btn">Accept Help</button>
                     </form>
@@ -133,3 +176,4 @@ try {
     </div>
 </body>
 </html>
+

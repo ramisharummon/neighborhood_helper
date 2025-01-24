@@ -153,6 +153,11 @@ if (!isset($_SESSION['user_id'])) {
         <div class="logo">Neighborhood Helper</div>
         <a href="home.php">Home</a>
         <a href="help_portal.php">View Help</a>
+        <a href="group.php">Group</a>
+        <a href="createevents.php">Event</a>
+        <a href="review.php">Review</a>
+       
+
         <a href="logout.php">Logout</a>
         <div class="search-bar">
             <form method="GET" action="search.php">

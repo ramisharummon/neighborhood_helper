@@ -133,8 +133,8 @@ include('../db.php');
         <div class="logo">Neighborhood Helper</div>
         <div>
             <a href="home.php">Home</a>
-            <a href="request_help.php">Request Help</a>
-            <a href="available_help.php">Available Help</a>
+            <a href="help_portal.php">View Help</a>
+          
             <a href="review.php">Review</a> 
             <a href="group.php">Group</a> 
             <a href="createevents.php">Event</a> <!-- Added Review link -->

@@ -1,8 +1,11 @@
 <?php
 session_start();
-include('../db.php');
-// Database Connection
 
+// Database Connection
+$host = 'localhost';
+$dbname = 'neighborhoodhelper';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -68,13 +71,13 @@ $groups = $pdo->query("SELECT GroupID, GroupName FROM `group`")->fetchAll(PDO::F
             <a href="#" class="text-2xl font-bold">Neighborhood Helper</a>
             <div class="flex items-center space-x-4">
             <a href="home.php" class="text-white">Home</a>
-                <a href="offer_help.php" class="text-white">View help</a>
+                <a href="help_portal.php" class="text-white">View Help</a>
                 <a href="group.php" class="text-white">Group</a>
                 <a href="createevents.php" class="text-white">Event</a>
-                <a href="review.php" class="text-white">review</a>
+                <a href="review.php" class="text-white">Review</a>
                 <input type="text" placeholder="Search events or groups" class="p-2 rounded border border-gray-300">
                 <button class="bg-white text-blue-500 font-semibold py-2 px-4 rounded">Search</button>
-               
+            
             </div>
         </div>
     </nav>

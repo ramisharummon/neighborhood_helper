@@ -78,7 +78,7 @@
         <h1>Request Sent!</h1>
         <p>Your request has been successfully sent to the help offerer. They will contact you soon.</p>
         <a href="home.php" class="home-link">Go to Home</a>
-        <a href="available_help.php" class="view-offers-link">View Other Offers</a>
+        <a href="help_portal.php" class="view-offers-link">View Other Offers</a>
     </div>
 </body>
 </html>
