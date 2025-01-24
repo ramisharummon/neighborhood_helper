@@ -1,6 +1,11 @@
 <?php
-//session_start();
-include('../db.php');
+session_start();
+
+// Database Connection
+$host = 'localhost';
+$dbname = 'neighborhoodhelper';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -100,31 +105,103 @@ try {
     <meta charset="UTF-8">
     <title>Groups - Neighborhood Helper</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Navbar Styling */
+        .navbar {
+            background-color: #7297cf; /* Blue background */
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar .logo {
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #5a78a4; /* Slightly darker blue on hover */
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+        .navbar input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .navbar button {
+            background-color: white;
+            color: #5D3A9B;
+            border: none;
+            padding: 6px 12px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navbar button:hover {
+            background-color: #E3E3E3;
+        }
+
+        .navbar .login {
+            background-color: #7297cf;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .navbar .login:hover {
+            background-color: #5a78a4;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <!-- Navigation Bar -->
-    <nav class="bg-blue-600 p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="text-white font-bold text-xl">
-                Neighborhood Helper
-            </div>
-            <div>
-                <form method="GET" action="" class="flex space-x-2">
-                    <input 
-                        type="text" 
-                        name="search" 
-                        value="<?php echo htmlspecialchars($searchQuery); ?>" 
-                        placeholder="Search Groups" 
-                        class="px-4 py-2 rounded border border-gray-300"
-                    />
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">
-                        Search
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
+    <div class="navbar">
+        <div class="logo">Neighborhood Helper</div>
+        <a href="home.php">Home</a> 
+        <a href="help_portal.php">View Help</a> 
+        <a href="">Review</a>
+        <a href="groups.php">Groups</a>
+        <?php if(isset($_SESSION['user_id'])): ?>
+            <a href="logout.php">Logout</a>
+        <?php else: ?>
+            <a href="login.php">Login</a>
+        <?php endif; ?>
+        
+        <!-- Search Form -->
+        <form method="GET" action="groups.php" class="search-bar">
+            <input 
+                type="text" 
+                name="search" 
+                value="<?php echo htmlspecialchars($searchQuery); ?>" 
+                placeholder="Search Groups" 
+            />
+            <button type="submit">Search</button>
+        </form>
+    </div>
 
+    <!-- Main Content -->
     <div class="container mx-auto px-4 py-8">
         <div class="grid md:grid-cols-2 gap-8">
             <!-- Group Creation Form -->
