@@ -132,6 +132,7 @@ session_start();
         <a href="<?php echo isset($_SESSION['user_id']) ? 'review.php' : 'login.php'; ?>">Review</a>
        
             <a href="<?php echo isset($_SESSION['user_id']) ? 'group.php' : 'login.php'; ?>">Group</a>
+            <a href="<?php echo isset($_SESSION['user_id']) ? 'createevents.php' : 'login.php'; ?>">Event</a>
             <?php if(isset($_SESSION['user_id'])){ ?>
 
         <a href="logout.php">Logout</a>

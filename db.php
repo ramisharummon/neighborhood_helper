@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0); // Turn off all error reporting
+error_reporting(0); // Turn off all error reporting
 session_start(); // Start the session to get user data
 
 // Database connection

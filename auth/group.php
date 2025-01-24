@@ -1,11 +1,8 @@
 <?php
 session_start();
-
+include('../db.php');
 // Database Connection
-$host = 'localhost';
-$dbname = 'neighborhoodhelper';
-$username = 'root';
-$password = '';
+
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -180,9 +177,10 @@ try {
     <div class="navbar">
         <div class="logo">Neighborhood Helper</div>
         <a href="home.php">Home</a> 
-        <a href="help_portal.php">View Help</a> 
-        <a href="">Review</a>
-        <a href="groups.php">Groups</a>
+        <a href="offer_help.php">View Help</a> 
+        <a href="review.php">Review</a>
+        <a href="group.php">Group</a>
+        <a href="createevents.php">Event</a> 
         <?php if(isset($_SESSION['user_id'])): ?>
             <a href="logout.php">Logout</a>
         <?php else: ?>

@@ -1,9 +1,8 @@
 <?php
-//session_start();
 include('../db.php'); // Include your database connection
 
 try {
-    // Database Query to fetch active help offers
+    // Fetch active help offers from the database
     $stmt = $conn->prepare("SELECT * FROM helpoffer WHERE Status = 'Active'");
     $stmt->execute();
     $offers = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch results as associative array
@@ -76,8 +75,21 @@ try {
             color: #e91e63;
         }
 
-        .offer-card p strong {
-            color: #555;
+        .accept-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .accept-btn:hover {
+            background-color: #45a049;
         }
 
         .no-offers {
@@ -108,6 +120,13 @@ try {
                     <p><strong>Description:</strong> <?php echo htmlspecialchars($offer['Description']); ?></p>
                     <p><strong>Availability:</strong> <?php echo htmlspecialchars($offer['Availability']); ?></p>
                     <p class="price"><strong>Price:</strong> $<?php echo number_format($offer['Price'], 2); ?></p>
+                    
+                    <!-- Accept Help Button -->
+                    <form method="POST" action="accept_offer.php">
+                        <!-- Hidden input to pass the offer_id to accept_offer.php -->
+                        <input type="hidden" name="offer_id" value="<?php echo htmlspecialchars($offer['ID']); ?>">
+                        <button type="submit" name="accept_offer" class="accept-btn">Accept Help</button>
+                    </form>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>

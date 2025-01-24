@@ -135,7 +135,9 @@ include('../db.php');
             <a href="home.php">Home</a>
             <a href="request_help.php">Request Help</a>
             <a href="available_help.php">Available Help</a>
-            <a href="review.php">Review</a> <!-- Added Review link -->
+            <a href="review.php">Review</a> 
+            <a href="group.php">Group</a> 
+            <a href="createevents.php">Event</a> <!-- Added Review link -->
         </div>
     </div>
 
@@ -157,11 +159,11 @@ include('../db.php');
                 <option value="Other">Other</option>
             </select>
 
-            <label for="price">Price (in $):</label>
-            <input type="number" id="price" name="price" placeholder="E.g., 15.00" step="0.01" required>
+            <label for="price">Price (in Tk):</label>
+            <input type="number" id="price" name="price" placeholder="Tk 100" step="100" required>
 
             <label for="availability">Availability:</label>
-            <input type="text" id="availability" name="availability" placeholder="E.g., Weekends, 9 AM - 5 PM" required>
+            <input type="text" id="availability" name="availability" placeholder="Weekends, 9 AM - 5 PM" required>
 
             <label for="status">Status:</label>
             <select id="status" name="status" required>

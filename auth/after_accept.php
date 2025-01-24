@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include('../db.php');
 ?>
 
@@ -8,7 +8,7 @@ include('../db.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Help</title>
+    <title>Help Accepted</title>
     <style>
         /* Basic Reset */
         * {
@@ -34,19 +34,20 @@ include('../db.php');
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
         }
 
         .navbar .logo {
             color: #fff;
             font-size: 1.8em;
             font-weight: bold;
+            margin-right: auto;
         }
 
         .navbar a {
             color: #fff;
             text-decoration: none;
-            margin-left: 20px;
+            margin: 0 15px;
             padding: 10px;
             font-size: 1em;
             border-radius: 5px;
@@ -57,7 +58,7 @@ include('../db.php');
             background-color: #4a62a4;
         }
 
-        .form-container {
+        .container {
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -65,35 +66,31 @@ include('../db.php');
             margin: 30px auto;
             max-width: 600px;
             width: 100%;
+            text-align: center;
         }
 
-        .form-container h2 {
-            text-align: center;
+        .container h2 {
             font-size: 2em;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #6C83C2;
         }
 
-        .form-container label {
+        .container p {
             font-size: 1.1em;
-            margin-bottom: 8px;
+            margin-bottom: 20px;
             color: #555;
         }
 
-        .form-container input,
-        .form-container select,
-        .form-container textarea {
-            width: 100%;
-            padding: 12px;
-            font-size: 1em;
-            margin-bottom: 20px;
+        .container .info {
+            background-color: #f9f9f9;
+            padding: 15px;
             border-radius: 8px;
             border: 1px solid #ddd;
-            background-color: #f9f9f9;
-            transition: border 0.3s ease, background-color 0.3s ease;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
-        .form-container button {
+        .container button {
             background-color: #6C83C2;
             color: white;
             font-size: 1.1em;
@@ -105,7 +102,7 @@ include('../db.php');
             transition: background-color 0.3s ease;
         }
 
-        .form-container button:hover {
+        .container button:hover {
             background-color: #4a62a4;
         }
 
@@ -139,41 +136,21 @@ include('../db.php');
     </div>
 
     <!-- Main Content -->
-    <div class="form-container">
-        <h2>Request Help</h2>
-        <form action="submit_request.php" method="POST">
-            <label for="title">Help Title:</label>
-            <input type="text" id="title" name="title" placeholder=" Need help with groceries" required>
+    <div class="container">
+        <h2>Help Successfully Accepted</h2>
+        <p>Thank you for offering your assistance! Below are the details of the help request you have accepted:</p>
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="5" placeholder="Provide details about the help you need" required></textarea>
+        <div class="info">
+            <p><strong>Title:</strong> Need help with groceries</p>
+            <p><strong>Description:</strong> Assistance with picking up and delivering groceries for the elderly.</p>
+            <p><strong>Type of Help:</strong> Physical Help</p>
+            <p><strong>Urgency:</strong> High</p>
+            <p><strong>Date:</strong> 2025-01-30</p>
+            <p><strong>Time:</strong> 10:00 AM</p>
+            <p><strong>Location:</strong> 123 Main Street</p>
+        </div>
 
-            <label for="type">Type of Help:</label>
-            <select id="type" name="type" required>
-                <option value="physical">Physical Help</option>
-                <option value="technical">Technical Help</option>
-                <option value="emotional">Emotional Support</option>
-                <option value="other">Other</option>
-            </select>
-
-            <label for="urgency">Urgency:</label>
-            <select id="urgency" name="urgency" required>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>
-
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time" required>
-
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder=" 123 Main Street" required>
-
-            <button type="submit">Post Request</button>
-        </form>
+        <button onclick="window.location.href='contact_requester.php';">Contact Requester</button>
     </div>
 
     <div class="return-home">
