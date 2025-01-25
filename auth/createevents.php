@@ -74,7 +74,9 @@ $groups = $pdo->query("SELECT GroupID, GroupName FROM `group`")->fetchAll(PDO::F
                 <a href="help_portal.php" class="text-white">View Help</a>
                 <a href="group.php" class="text-white">Group</a>
                 <a href="createevents.php" class="text-white">Event</a>
+                <a href="viewevents.php" class="text-white">View Event</a>
                 <a href="review.php" class="text-white">Review</a>
+
                 <input type="text" placeholder="Search events or groups" class="p-2 rounded border border-gray-300">
                 <button class="bg-white text-blue-500 font-semibold py-2 px-4 rounded">Search</button>
             
