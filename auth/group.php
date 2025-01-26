@@ -3,13 +3,16 @@ session_start();
 include('../db.php');
 // Database Connection
 
-
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Hardcoded user ID (replace with actual authentication)
-    $currentUserId = 1;
+    // Retrieve user ID from the session to ensure the correct user is interacting with the groups
+    $currentUserId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
+    if ($currentUserId === null) {
+        die("You must be logged in to interact with groups.");
+    }
 
     // Handle Group Creation
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_group'])) {
@@ -57,6 +60,7 @@ try {
         ]);
 
         if ($checkStmt->fetchColumn() == 0) {
+            // User is not a member, so join the group
             $joinStmt = $pdo->prepare("
                 INSERT INTO groupmember (GroupID, UserID) 
                 VALUES (:groupId, :userId)
@@ -105,10 +109,13 @@ try {
     <style>
         /* Navbar Styling */
         .navbar {
-            background-color: #7297cf; /* Blue background */
+            background-color: #7297cf;
             display: flex;
             align-items: center;
             padding: 10px 20px;
+            width: 100%;
+            position: fixed; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .navbar .logo {
@@ -178,9 +185,9 @@ try {
         <div class="logo">Neighborhood Helper</div>
         <a href="home.php">Home</a> 
         <a href="offer_help.php">View Help</a> 
-        <a href="review.php">Review</a>
         <a href="group.php">Group</a>
         <a href="createevents.php">Event</a> 
+        <a href="review.php">Review</a>
         <?php if(isset($_SESSION['user_id'])): ?>
             <a href="logout.php">Logout</a>
         <?php else: ?>
@@ -270,3 +277,4 @@ try {
     </div>
 </body>
 </html>
+

@@ -128,11 +128,13 @@ session_start();
         <div class="logo">Neighborhood Helper</div>
         <a href="home.php">Home</a>
         <a href="help_portal.php">View Help</a>
-        <!-- "Review" link logic -->
-        <a href="<?php echo isset($_SESSION['user_id']) ? 'review.php' : 'login.php'; ?>">Review</a>
+        <a href="<?php echo isset($_SESSION['user_id']) ? 'group.php' : 'login.php'; ?>">Group</a>
+        <a href="<?php echo isset($_SESSION['user_id']) ? 'createevents.php' : 'login.php'; ?>">Event</a>
+            <a href="<?php echo isset($_SESSION['user_id']) ? 'review.php' : 'login.php'; ?>">Review</a>
+           
        
-            <a href="<?php echo isset($_SESSION['user_id']) ? 'group.php' : 'login.php'; ?>">Group</a>
-            <a href="<?php echo isset($_SESSION['user_id']) ? 'createevents.php' : 'login.php'; ?>">Event</a>
+        <!-- "Review" link logic -->
+       
             <?php if(isset($_SESSION['user_id'])){ ?>
 
         <a href="logout.php">Logout</a>

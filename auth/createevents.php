@@ -59,31 +59,106 @@ $groups = $pdo->query("SELECT GroupID, GroupName FROM `group`")->fetchAll(PDO::F
     <title>Create Event - Neighborhood Helper</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
         .navbar {
             background-color: #7297cf;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            width: 100%;
+            position: fixed; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
             color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #5a78a4; /* Slightly darker blue on hover */
+        }
+
+        .navbar .menu-icon {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .navbar .menu-icon:hover {
+            color: #d9d9d9;
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+        .navbar input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .navbar button {
+            background-color: white;
+            color: #5D3A9B;
+            border: none;
+            padding: 6px 12px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navbar button:hover {
+            background-color: #E3E3E3;
         }
     </style>
 </head>
 <body class="bg-gray-100">
-    <nav class="navbar p-4 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold">Neighborhood Helper</a>
-            <div class="flex items-center space-x-4">
-            <a href="home.php" class="text-white">Home</a>
-                <a href="help_portal.php" class="text-white">View Help</a>
-                <a href="group.php" class="text-white">Group</a>
-                <a href="createevents.php" class="text-white">Event</a>
-                <a href="viewevents.php" class="text-white">View Event</a>
-                <a href="review.php" class="text-white">Review</a>
 
-                <input type="text" placeholder="Search events or groups" class="p-2 rounded border border-gray-300">
-                <button class="bg-white text-blue-500 font-semibold py-2 px-4 rounded">Search</button>
-            
-            </div>
+    <!-- New Navbar -->
+    <div class="navbar">
+        <div class="logo">Neighborhood Helper</div>
+        <a href="home.php">Home</a>
+        <a href="help_portal.php">View Help</a>
+        <a href="group.php">Group</a>
+        <a href="createevents.php">Event</a>
+        <a href="viewevents.php">View Events</a>
+        <a href="review.php">Review</a>
+        <a href="logout.php">Logout</a>
+        <div class="search-bar">
+            <form method="GET" action="search.php">
+                <input type="text" name="query" placeholder="Search events or groups">
+                <button type="submit">Search</button>
+            </form>
         </div>
-    </nav>
+    </div>
 
+    <!-- Event Creation Form -->
     <div class="container mx-auto px-4 py-8">
         <form method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <h2 class="text-2xl mb-4 font-bold text-gray-800">Create New Event</h2>

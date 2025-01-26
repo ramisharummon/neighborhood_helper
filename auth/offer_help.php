@@ -11,51 +11,84 @@ include('../db.php');
     <title>Offer Help</title>
     <style>
         /* Basic Reset */
-        * {
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
         }
 
+        /* Navbar Styling */
         .navbar {
-            background-color: #6C83C2;
-            width: 100%;
-            padding: 15px 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #7297cf;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            padding: 10px 20px;
+            width: 100%;
+            position: fixed; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .navbar .logo {
-            color: #fff;
-            font-size: 1.8em;
+            color: white;
+            font-size: 1.5em;
             font-weight: bold;
+            margin-right: auto;
         }
 
         .navbar a {
-            color: #fff;
+            color: white;
             text-decoration: none;
-            margin-left: 20px;
-            padding: 10px;
-            font-size: 1em;
+            margin: 0 10px;
+            padding: 8px 12px;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
         }
 
         .navbar a:hover {
-            background-color: #4a62a4;
+            background-color: #5a78a4; /* Slightly darker blue on hover */
         }
+
+        .navbar .menu-icon {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .navbar .menu-icon:hover {
+            color: #d9d9d9;
+        }
+
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .navbar input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .navbar button {
+            background-color: white;
+            color: #5D3A9B;
+            border: none;
+            padding: 6px 12px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .navbar button:hover {
+            background-color: #E3E3E3;
+        }
+
 
         .form-container {
             background: #fff;

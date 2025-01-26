@@ -33,6 +33,7 @@ include('../db.php');
             padding: 15px 30px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
+            position: fixed; 
             align-items: center;
             justify-content: center; /* Center the navbar items */
         }

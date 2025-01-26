@@ -34,6 +34,7 @@ if (!isset($_SESSION['user_id'])) {
             align-items: center;
             padding: 10px 20px;
             width: 100%;
+            position: fixed; 
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
