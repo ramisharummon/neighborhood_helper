@@ -33,7 +33,6 @@ include('../db.php');
             padding: 15px 30px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
-            position: fixed; 
             align-items: center;
             justify-content: space-between;
         }
@@ -144,7 +143,7 @@ include('../db.php');
         <h2>Request Help</h2>
         <form action="submit_request.php" method="POST">
             <label for="title">Help Title:</label>
-            <input type="text" id="title" name="title" placeholder=" Need help with groceries" required>
+            <input type="text" id="title" name="title" placeholder="E.g., Need help with groceries" required>
 
             <label for="description">Description:</label>
             <textarea id="description" name="description" rows="5" placeholder="Provide details about the help you need" required></textarea>
@@ -171,7 +170,7 @@ include('../db.php');
             <input type="time" id="time" name="time" required>
 
             <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder=" 123 Main Street" required>
+            <input type="text" id="location" name="location" placeholder="E.g., 123 Main Street" required>
 
             <button type="submit">Post Request</button>
         </form>

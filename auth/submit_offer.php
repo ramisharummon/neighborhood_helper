@@ -106,6 +106,8 @@ include('../db.php');
             <a href="home.php">Home</a>
             <a href="offer_help.php">Offer Help</a>
             <a href="available_help.php">Available Help</a>
+            <a href="group.php">Group</a>
+            <a href="createevents.php">Event</a>
         </div>
     </div>
 

@@ -1,8 +1,52 @@
 <?php
-//session_start();
 include('../db.php');
-?>
 
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    die("Error: User is not logged in.");
+}
+
+// Retrieve UserID from the session
+$UserID = $_SESSION['user_id'];
+
+// Retrieve form data
+$title = $_POST['title'];
+$description = $_POST['description'];
+$type = $_POST['type'];
+$urgency = $_POST['urgency'];
+$date = $_POST['date'];
+$time = $_POST['time'];
+$location = $_POST['location'];
+$status = 'Pending'; // Default status for a new request
+$requestDate = date('Y-m-d H:i:s'); // Current date and time
+
+$success = false;
+$errorMessage = "";
+
+try {
+    // Prepare the SQL query
+    $stmt = $conn->prepare("INSERT INTO helprequest (UserID, Title, Description, Category, UrgencyLevel, Location, RequestDate, TimeFrame, Status) 
+                            VALUES (:UserID, :title, :description, :type, :urgency, :location, :requestDate, :time, :status)");
+
+    // Bind parameters
+    $stmt->bindParam(':UserID', $UserID);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':description', $description);
+    $stmt->bindParam(':type', $type);
+    $stmt->bindParam(':urgency', $urgency);
+    $stmt->bindParam(':location', $location);
+    $stmt->bindParam(':requestDate', $requestDate);
+    $stmt->bindParam(':time', $time);
+    $stmt->bindParam(':status', $status);
+
+    // Execute the query
+    $stmt->execute();
+    $success = true;
+} catch (PDOException $e) {
+    $errorMessage = "Error: Unable to submit your request. Please try again later.";
+    error_log("Database error: " . $e->getMessage());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +65,6 @@ include('../db.php');
             font-family: 'Arial', sans-serif;
             background-color: #f5f5f5;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
         }
 
         .navbar {
@@ -33,22 +73,22 @@ include('../db.php');
             padding: 15px 30px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: flex;
-            position: fixed; 
             align-items: center;
-            justify-content: center; /* Center the navbar items */
+            position: fixed; 
+            justify-content: center;
         }
 
         .navbar .logo {
             color: #fff;
             font-size: 1.8em;
             font-weight: bold;
-            margin-right: auto; /* Push logo to the left */
+            margin-right: auto; /* Align logo to the left */
         }
 
         .navbar a {
             color: #fff;
             text-decoration: none;
-            margin: 0 15px; /* Equal spacing between links */
+            margin: 0 15px;
             padding: 10px;
             font-size: 1em;
             border-radius: 5px;
@@ -59,73 +99,54 @@ include('../db.php');
             background-color: #4a62a4;
         }
 
-        .container {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin: 30px auto;
-            max-width: 600px;
-            width: 100%;
+        .success-container,
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 60px); /* Adjust for navbar height */
         }
 
-        .container h2 {
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 25px;
-            color: #6C83C2;
+        .success-container .tick-icon,
+        .error-container .error-icon {
+            font-size: 100px;
+            color: #28a745;
         }
 
-        .container label {
-            font-size: 1.1em;
-            margin-bottom: 8px;
+        .success-container h1,
+        .error-container h1 {
+            font-size: 2.5em;
+            color: #28a745;
+            margin: 20px 0;
+        }
+
+        .error-container h1 {
+            color: #dc3545;
+        }
+
+        .success-container p,
+        .error-container p {
+            font-size: 1.2em;
             color: #555;
         }
 
-        .container input,
-        .container select,
-        .container textarea {
-            width: 100%;
-            padding: 12px;
-            font-size: 1em;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
-            transition: border 0.3s ease, background-color 0.3s ease;
-        }
-
-        .container button {
-            background-color: #6C83C2;
-            color: white;
-            font-size: 1.1em;
-            padding: 12px;
-            border-radius: 8px;
-            width: 100%;
-            cursor: pointer;
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .container button:hover {
-            background-color: #4a62a4;
-        }
-
         .return-home {
-            text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
         .return-home a {
-            color: #6C83C2;
-            font-size: 1.1em;
+            background-color: #6C83C2;
+            color: #fff;
             text-decoration: none;
-            font-weight: bold;
-            transition: text-decoration 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
         }
 
         .return-home a:hover {
-            text-decoration: underline;
+            background-color: #4a62a4;
         }
     </style>
 </head>
@@ -137,49 +158,29 @@ include('../db.php');
             <a href="home.php">Home</a>
             <a href="offer_help.php">Offer Help</a>
             <a href="available_help.php">Available Help</a>
+            <a href="group.php">Group</a>
+            <a href="createevents.php">Event</a>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <h2>Request Help</h2>
-        <form action="submit_request.php" method="POST">
-            <label for="title">Help Title:</label>
-            <input type="text" id="title" name="title" placeholder="E.g., Need help with groceries" required>
-
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="5" placeholder="Provide details about the help you need" required></textarea>
-
-            <label for="type">Type of Help:</label>
-            <select id="type" name="type" required>
-                <option value="physical">Physical Help</option>
-                <option value="technical">Technical Help</option>
-                <option value="emotional">Emotional Support</option>
-                <option value="other">Other</option>
-            </select>
-
-            <label for="urgency">Urgency:</label>
-            <select id="urgency" name="urgency" required>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-            </select>
-
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time" required>
-
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder="E.g., 123 Main Street" required>
-
-            <button type="submit">Post Request</button>
-        </form>
-    </div>
-
-    <div class="return-home">
-        <a href="home.php">Return to Home</a>
-    </div>
+    <?php if ($success): ?>
+        <div class="success-container">
+            <div class="tick-icon">&#10003;</div>
+            <h1>Request Successfully Submitted!</h1>
+            <p>Your request has been posted successfully.</p>
+            <div class="return-home">
+                <a href="home.php">Return to Home</a>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="error-container">
+            <div class="error-icon">&#10007;</div>
+            <h1>Submission Failed</h1>
+            <p><?= htmlspecialchars($errorMessage); ?></p>
+            <div class="return-home">
+                <a href="home.php">Return to Home</a>
+            </div>
+        </div>
+    <?php endif; ?>
 </body>
 </html>
